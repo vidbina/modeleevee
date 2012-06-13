@@ -1,5 +1,6 @@
 # Modeleevee
 
+A novice's attempt at creating a gem to deal with a couple of tricks I'd love my Models to know.
 TODO: Write a gem description
 
 ## Installation
