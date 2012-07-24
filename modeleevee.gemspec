@@ -15,5 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Modeleevee::VERSION
 
-	# gem.add_runtime_dependency 
+	gem.add_development_dependency "sqlite3"
+
+	gem.add_runtime_dependency "activerecord"
 end
