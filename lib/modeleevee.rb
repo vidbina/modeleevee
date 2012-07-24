@@ -1,6 +1,6 @@
+require 'active_record'
 require "modeleevee/version"
-#require ActiveRecord::Base
-#require Digest::MD5
+# TODO: require Digest::MD5
 
 module Modeleevee
 	#class Modeleevee
