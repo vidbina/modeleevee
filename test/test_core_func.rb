@@ -9,16 +9,14 @@ class CoreFunctionalitiesTest < Test::Unit::TestCase
 
   def test_preperatory_includer_module
     assert(
-      Memo.extend(Includer).respond_to? :do_include, 'Where is the Includer?.')
+      Memo.extend(Includer).respond_to?(:do_include), 
+      'Where is the Includer?.'
+    )
   end
 
-  def test_existence_of_model_getters
+  def test_existence_of_memo_model_getters
     assert(@memo.new.respond_to? :id)
     assert(@memo.new.respond_to? :note)
-  end
-
-  def test_existence_of_modeleevee_instance_methods
-    assert(@memo.new.respond_to? :which?, 'Modeleevee should respond to which')
   end
 
   def test_saving_of_modeleevee_objects

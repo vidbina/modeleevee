@@ -37,4 +37,8 @@ module Internals
   def does_id_exist? me
     id_already_exists? me
   end
+
+  def ask_which?
+    which?
+  end
 end
