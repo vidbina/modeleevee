@@ -24,13 +24,14 @@ class CoreFunctionalitiesTest < Test::Unit::TestCase
   def test_saving_of_modeleevee_objects
     old_count = @memo.count
 
-    assert_nothing_raised do
-      new_memo  = @memo.new(:note => 'Write modeleevee!').save!
+    new_memo = assert_nothing_raised do
+      new_memo = @memo.new(:note => 'Write modeleevee!')
+      new_memo.save!
+      assert_equal(new_memo.id.to_s.length, 32, 'Default id-length should be 32.')
     end
 
-    assert_equals(old_count+1, @memo.count, 'There should be one more memo!')
+    assert_equal(old_count+1, @memo.count, 'There should be one more memo!')
 
-    assert_equals(new_memo.id.to_s.length, 32, 'Default id-length should be 32.')
   end
 
   def test_generate_unique_id_method
@@ -48,7 +49,9 @@ class CoreFunctionalitiesTest < Test::Unit::TestCase
     assert valid_memo.id.blank?, 'Id of the new memo should be blank'
     assert !valid_memo.does_id_exist?('nonexistent'), 'That never existed!'
     assert valid_memo.do_generate_unique_id, 'id generation should succeed.'
-    assert valid valid_memo.save.id.length, 32, 'Default ids are 32 chars long'
+    assert valid_memo.save, 'A valid memo deserves to be be saved. ;)'
+    assert_equal valid_memo.id.length, 32, 'Default ids are 32 chars long'
+    assert !valid_memo.do_generate_unique_id, 'If I already have an id, why bother?'
   end
 
 end

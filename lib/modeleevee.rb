@@ -4,6 +4,12 @@ require 'modeleevee/version'
 # TODO: require Digest::MD5
 
 module Modeleevee
+  extend ActiveSupport::Concern
+
+  included do
+    before_save :generate_unique_id
+  end
+
   #class Modeleevee
     # Your code goes here...
 
