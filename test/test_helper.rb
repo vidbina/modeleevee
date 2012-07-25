@@ -16,3 +16,4 @@ ActiveRecord::Base.establish_connection(
 load File.dirname(__FILE__) + '/support/schema.rb'
 load File.dirname(__FILE__) + '/support/models.rb'
 load File.dirname(__FILE__) + '/support/data.rb'
+load File.dirname(__FILE__) + '/support/modules.rb'
