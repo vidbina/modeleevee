@@ -37,7 +37,7 @@ module Modeleevee
   # @return [Boolean]
   def id_already_exists? me
     # TODO: test and write code
-    false
+    self.class.exists?(me)
   end
 
   # Generates the id for the model

@@ -29,7 +29,7 @@ module Includer
 end
 
 # TODO: find a more elegant way to override this
-module Internals
+module Exposer
   def do_generate_unique_id
     generate_unique_id
   end
@@ -38,7 +38,15 @@ module Internals
     id_already_exists? me
   end
 
-  def ask_which?
-    which?
+  def get_which
+    seed_which
+  end
+
+  def get_time
+    seed_time
+  end
+
+  def do_digest
+    digest
   end
 end
