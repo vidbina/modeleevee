@@ -18,15 +18,21 @@ Or install it yourself as:
 
 ## Usage
 
-The Modeleevee module extends ActiveRecord models to deal with binary ids by simply including the module into your model.
+The Modeleevee module extends ActiveRecord models to deal with binary ids and can be put to work for you by simply including the module into your model.
 
 ```ruby
 class Pizza extend ActiveRecord::Base
   include Modeleevee
+
+  attr_accessible :topping
+
+	# do something
+  # perhaps bake the pizza, sell the pizza, wrap the pizza as a gift
+  # or...  eat the pizza -- after baking it of course ;)
 end
 ```
 
-Modeleevee extends the module to hijack the entire id generation process. Normally ActiveRecord modules determine the next integer id by incrementing the value of the last generated id. Modeleevee, however; generates a "completely" random binary id upon saving the model the the database.
+Modeleevee extends the module to hijack the entire id generation process. Normally ActiveRecord modules determine the next integer id by incrementing the value of the last generated id. Modeleevee, however; generates a random binary id upon saving the model to the database.
 
 ```ruby
 # let's make a simple pizza
@@ -50,10 +56,12 @@ end
 
 The time will often enough lead to unique values but as you've already suspected you'd be in some trouble if multiple users attempted to save a pizza at the exact same time. The `seed_which` method increases the enthropy of id generation by involving a string representation of the model in the id-generation process. You are free to overload the `seed_which` method at any time but please do so considering the best options for minng unique values. By default `seed_which` will return something like `#<Pizza:0xa8e08b4>` for our pizza which contains the object identifier that is assigned by the Ruby interpreter. All of a sudden there are more forces (interpreter uptime, allocated memory and history, among many other forces) at work to generate that "unique" id.
 
-Overloading `seed_which` to return data based on model properties would not always leave you with unique results as I could suspect that there will be multiple curious fellas and gals attempting to make pizzas with mashmallow topics.
+Overloading `seed_which` to return data based on some model properties would not always leave you with unique results as I could suspect that there will be multiple curious fellas and gals attempting to make pizzas with mashmallow toppings, but you're free to do so anyway. This would be useful if you have overloaded the `to_s` method of you model's instance to return something that isn't really unique but I doubt that you would do something that odd.
 
 ```ruby
 def seed_which
+  # instead of the default self.to_s which returns "surprise" everytime
+  # since I chose to overload the to_s method. *evil laugh*
   "#{self.topping}"
 end
 ```
