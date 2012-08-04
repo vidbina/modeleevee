@@ -26,7 +26,7 @@ class Pizza extend ActiveRecord::Base
 
   attr_accessible :topping
 
-	# do something
+  # do something
   # perhaps bake the pizza, sell the pizza, wrap the pizza as a gift
   # or...  eat the pizza -- after baking it of course ;)
 end
